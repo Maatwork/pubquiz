@@ -8,8 +8,12 @@
     "react": "^16.0.0",
     "react-countdown-now": "^1.2.0",
     "react-dom": "^16.0.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^4.2.0",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "^1.0.14",
     "reactstrap": "^5.0.0-alpha.3",
+    "redux": "^3.5.2",
     "timer.js": "^1.0.4"
   },
   "scripts": {

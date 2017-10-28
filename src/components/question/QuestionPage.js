@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
 
 import Question from './Question';
@@ -11,12 +11,8 @@ class QuestionPage extends Component {
         super(props);           
         this.isFinished = this.isFinished.bind(this);
         this.state = {
-            currentQuestion: {
-                time: 2,
-                question: "Wie won een Golden Globe voor het spelen van het" + 
-                            " karakter Satine in 2001 in de film “Moulin Rouge”?"     
-            },
-            questionNumber: 0    
+            questions: this.props.questions,
+            currentQuestion: 0    
           };
     }
     
@@ -24,11 +20,7 @@ class QuestionPage extends Component {
     isFinished() {
         console.log("new question");
         this.setState({
-            questionNumber: this.state.questionNumber + 1,
-            currentQuestion: {
-                time: 2,
-                question: "Test " + this.state.questionNumber    
-            }  
+            currentQuestion: this.state.currentQuestion + 1
           });        
     }
 
@@ -49,13 +41,18 @@ class QuestionPage extends Component {
                     <Col>
                     <Question  
                         isFinished={this.isFinished}
-                        time={this.state.currentQuestion.time}
-                        question={this.state.currentQuestion.question} />
+                        time={this.state.questions[this.state.currentQuestion].time}
+                        question={this.state.questions[this.state.currentQuestion].question} />
                     </Col>                   
                 </Row>
             </div>
         );
     }
 }
+
+
+QuestionPage.propTypes = {
+    questions: PropTypes.object.isRequired
+  }
 
 export default QuestionPage;
