@@ -1,7 +1,7 @@
 const quiz = [
     {
         time: 5,
-        question: "Wie won een Golden Globe voor het spelen van het" + 
+        question: "Wie won een Golden Globe voor het spelen van het " + 
                     "karakter Satine in 2001 in de film “Moulin Rouge”?" 
     },
     {

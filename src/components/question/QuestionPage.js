@@ -3,25 +3,59 @@ import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
 
 import Question from './Question';
+import Pauze from './Pauze';
 import CountdownTimer from './CountdownTimer';
 import Countdown from 'react-countdown-now';
 
 class QuestionPage extends Component {
     constructor(props) {
         super(props);           
-        this.isFinished = this.isFinished.bind(this);
+
         this.state = {
             questions: this.props.questions,
-            currentQuestion: 0    
+            currentQuestion: 0,
+            isWaiting: false    
           };
+
+        this.isFinished = this.isFinished.bind(this);
+        this.rendereComponent = this.renderComponent.bind(this);   
     }
     
 
-    isFinished() {
+    isFinished(sender) {
         console.log("new question");
-        this.setState({
-            currentQuestion: this.state.currentQuestion + 1
-          });        
+        if(sender == 'question'){
+            this.setState({
+                currentQuestion: this.state.currentQuestion + 1,
+                isWaiting: true
+              });  
+        } else {
+            this.setState({
+                isWaiting: false
+              });            
+        }
+      
+    }
+
+    renderComponent(props) {
+        const isWaiting = props.isWaiting;
+        
+        if (isWaiting) {
+          return (
+                <Pauze 
+                    isFinished={this.isFinished}
+                 />
+                 );
+        }
+        else {
+            return (
+                <Question  
+                    isFinished={this.isFinished}
+                    time={this.state.questions[this.state.currentQuestion].time}
+                    question={this.state.questions[this.state.currentQuestion].question} 
+                />
+            );
+        }
     }
 
     render() {
@@ -33,17 +67,14 @@ class QuestionPage extends Component {
               // Render a countdown 
               return <span>{seconds}</span>;
             }
-          };
- 
+          };       
+        
         return (
             <div>
                 <Row className="question-row">
-                    <Col>
-                    <Question  
-                        isFinished={this.isFinished}
-                        time={this.state.questions[this.state.currentQuestion].time}
-                        question={this.state.questions[this.state.currentQuestion].question} />
-                    </Col>                   
+                    <Col>               
+                        { this.renderComponent(this.state) }
+                    </Col>                 
                 </Row>
             </div>
         );

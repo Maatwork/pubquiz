@@ -16,12 +16,12 @@ class Question extends Component {
  
     componentDidMount() {       
         setTimeout(function() { 
-            this.props.isFinished() }.bind(this), this.props.time * 1000);
+            this.props.isFinished('question') }.bind(this), this.props.time * 1000);
     }
     
     componentDidUpdate(){
         setTimeout(function() { 
-            this.props.isFinished() }.bind(this), this.props.time * 1000);      
+            this.props.isFinished('question') }.bind(this), this.props.time * 1000);      
     }
 
     render() {        
