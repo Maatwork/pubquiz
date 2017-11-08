@@ -5,7 +5,7 @@ const quiz = [
                     "karakter Satine in 2001 in de film “Moulin Rouge”?" 
     },
     {
-        time: 5,
+        time: 20,
         question: "Hoeveel snaren heeft een viool?" 
     },
     {

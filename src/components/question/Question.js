@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Countdown from 'react-countdown-now';
+import { Row, Col } from 'reactstrap';
+
+import CountdownTimer from './CountdownTimer';
 
 class Question extends Component {
     constructor(props) {
@@ -10,26 +12,30 @@ class Question extends Component {
             time: 5,
             question: "Wie won een Golden Globe voor het spelen van het" + 
                         "karakter Satine in 2001 in de film “Moulin Rouge”?"            
-          };
-        
+          };         
+        this.finishQuestion = this.finishQuestion.bind(this);
     }
- 
-    componentDidMount() {       
-        setTimeout(function() { 
-            this.props.isFinished('question') }.bind(this), this.props.time * 1000);
+
+    finishQuestion(){
+        this.props.isFinished('question');
     }
-    
-    componentDidUpdate(){
-        setTimeout(function() { 
-            this.props.isFinished('question') }.bind(this), this.props.time * 1000);      
-    }
+
 
     render() {        
         return (
             <div>
-                <h1 className="question px-5">{this.props.question}</h1>
-                 {}
+                <Row>
+                    <Col xs="12">
+                        <div className="question-title-wrapper ">
+                            <h1 className="question px-5 ">{this.props.question}</h1>
+                        </div>                    
+                    </Col>
+                    <Col xs="12">
+                    </Col>
+                </Row>
+                <CountdownTimer time={this.props.time} finish={this.finishQuestion} />
             </div>
+
         );
     }
 }

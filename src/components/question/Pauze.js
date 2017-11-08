@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+
 class Pauze extends Component {
     constructor(props) {
         super(props);
@@ -12,7 +13,6 @@ class Pauze extends Component {
                 console.log("spacebar hit - next question");
                 this.props.isFinished('pauze');
             }
-        
     }
 
     componentDidMount(){
@@ -25,7 +25,7 @@ class Pauze extends Component {
 
     render() {
         return (
-            <div>                
+            <div>             
             </div>
         );
     }
