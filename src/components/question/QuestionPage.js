@@ -30,9 +30,11 @@ class QuestionPage extends Component {
                 isWaiting: true
               });  
         } else {
-            this.setState({
-                isWaiting: false
-              });            
+            if(this.state.currentQuestion != this.state.questions.length) {
+                this.setState({
+                    isWaiting: false
+                });            
+            }
         }
       
     }
